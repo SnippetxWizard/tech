@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechCode Event: Parallax Scrolling Website</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header>
+        <div id="logo">TechCode</div>
+
+        <!-- Hamburger Icon -->
+        <div class="hamburger" onclick="toggleMenu()">☰</div>
+
+        <!-- Updated Navigation Bar -->
+        <div class="menu">
+            <a href="#home" class="active">Home</a>
+            <a href="#view-event">View Event</a>
+            <a href="#registration">Registration</a>
+            <a href="#leaderboard">Leaderboard</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </header>
+
+    <div class="parallax">
+        <div id="heading" class="aurora-text"><i>CODETECH.IO<br>2025</i>
+        
+        </div>
+        <img src="moon.png" alt="Moon" id="moon">
+        <img src="layer.png" alt="Mountain" id="mountain">
+        <img src="grass.png" alt="Grass" id="grass">
+    </div>
+
+    <!-- Sections for Each Navigation Item -->
+    <section id="home">
+        <h2>Welcome to the Techcode Event </h2>
+        
+    </section>
+    <section id="view-event">
+        <h2>Event</h2>    
+    
+    </section>
+
+    <section id="registration">
+        <h2>Registration</h2>
+        
+    </section>
+
+    <section id="leaderboard">
+        <h2>Leaderboard</h2>
+        <p>Check out the leaderboard for top participants.</p>
+    </section>
+
+    <section id="contact">
+        <h2>Contact</h2>
+        <p>Have questions? Reach out to us via the contact section.</p>
+    </section>
+
+    <script>
+        function toggleMenu() {
+            document.querySelector('.menu').classList.toggle('active');
+        }
+
+        const heading = document.getElementById("heading");
+        const moon = document.getElementById("moon");
+
+        // Smooth Scroll Functionality
+        document.querySelectorAll('.menu a').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+
+        // Parallax Effect
+        window.addEventListener("scroll", () => {
+            let value = window.scrollY;
+            if (value <= 500) {
+                heading.style.marginTop = value * 2.5 + 'px';
+                moon.style.right = 20 + value * 0.1 + '%';
+            }
+        });
+    </script>
+</body>
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+    * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+    }
+
+    body {
+        min-height: 100vh;
+        background: linear-gradient(to right, #010dff, #ae00ff);
+    }
+
+    /* Glassmorphism Navbar */
+    header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        padding: 15px 60px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        z-index: 100;
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        border-radius: 15px;
+        transition: 0.3s;
+    }
+
+    #logo {
+        font-size: 2em;
+        color: #fff;
+        user-select: none;
+        font-weight: 600;
+    }
+
+    .menu {
+        display: flex;
+    }
+
+    .menu a {
+        font-size: 0.8em;
+        color: #fff;
+        font-weight: 500;
+        text-decoration: none;
+        margin-left: 20px;
+        letter-spacing: 1px;
+        padding: 6px 15px;
+        border-radius: 8px;
+        transition: 0.5s;
+    }
+
+    .menu a:hover,
+    a.active {
+        color: #333;
+        background: #fff;
+    }
+
+    /* Hamburger Menu */
+    .hamburger {
+        font-size: 2em;
+        color: #fff;
+        cursor: pointer;
+        display: none;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+        .menu {
+            position: absolute;
+            top: 70px;
+            left: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            display: none;
+            flex-direction: column;
+            text-align: center;
+            padding: 15px 0;
+            border-radius: 0 0 15px 15px;
+        }
+
+        .menu a {
+            margin: 10px 0;
+            padding: 10px;
+            font-size: 1.2em;
+        }
+
+        .menu.active {
+            display: flex;
+        }
+
+        .hamburger {
+            display: block;
+        }
+    }
+
+    .parallax {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background: url('images/background.jpg') no-repeat;
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+    }
+
+    #heading {
+        position: absolute;
+        top: 20%;
+        font-size: 4em;
+        color: #fff;
+        text-shadow: 2px 4px 5px #232121;
+    }
+
+    .parallax img {
+        position: absolute;
+        width: 100%;
+        pointer-events: none;
+    }
+
+    .parallax img#moon {
+        width: 300px;
+        top: 40%;
+        right: 20%;
+    }
+
+    .parallax img#mountain {
+        position: fixed;
+        bottom: 0;
+    }
+
+    .parallax img#grass {
+        bottom: -20%;
+        width: 110%;
+    }
+
+    section {
+        position: relative;
+        background-color: #020912;
+        padding: 30px 100px;
+        min-height: 100vh;
+    }
+
+    h2 {
+        color: #fff;
+        font-size: 3em;
+        margin-bottom: 25px;
+    }
+
+    p {
+        color: #fff;
+        font-size: 1em;
+        font-weight: 300;
+    }
+
+    .aurora-text {
+        font-size: 5rem;
+        font-weight: bold;
+        text-transform: uppercase;
+        position: relative;
+        color: transparent;
+        background: linear-gradient(45deg, #ff00cc, #3333ff, #00ffcc, #ffcc00);
+        background-size: 100%;
+        -webkit-background-clip: text;
+        animation: auroraAnimation 4s infinite linear;
+    }
+
+    @keyframes auroraAnimation {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+    }
+</style>
+
+</html>
