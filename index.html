@@ -11,11 +11,6 @@
 <body>
     <header>
         <div id="logo">TechCode</div>
-
-        <!-- Hamburger Icon -->
-        <div class="hamburger" onclick="toggleMenu()">☰</div>
-
-        <!-- Updated Navigation Bar -->
         <div class="menu">
             <a href="#home" class="active">Home</a>
             <a href="#view-event">View Event</a>
@@ -24,10 +19,19 @@
             <a href="#contact">Contact</a>
         </div>
     </header>
-
+    
     <div class="parallax">
-        <div id="heading" class="aurora-text"><i>CODETECH.IO<br>2025</i>
-        
+        <div id="heading">
+            <i class="aurora-text">CODETECH.IO<br>2025</i>
+            <p class="created-by">Organized by SYCS</p>
+            <div class="buttons">
+                <a href="#view-event" class="btn explore-btn">Explore Event</a>
+                <a href="#registration" class="btn register-btn">Registration</a>
+            </div>
+        </div>
+        <div class="scroll-down">
+            <span>Scroll Down</span>
+            <div class="arrow"></div>
         </div>
         <img src="moon.png" alt="Moon" id="moon">
         <img src="layer.png" alt="Mountain" id="mountain">
@@ -36,34 +40,145 @@
 
     <!-- Sections for Each Navigation Item -->
     <section id="home">
-        <h2>Welcome to the Techcode Event </h2>
-        
+        <h2>explore more</h2>
     </section>
+        
+
     <section id="view-event">
-        <h2>Event</h2>    
-    
+        
+        <section id="events">
+            <h2 class="section-title">Events</h2>
+            <div class="event-list">
+                <div class="event-card debugging">
+                    <h3>Debugging</h3>
+                    <p>Showcase your debugging skills and solve challenges.</p>
+                    <a href="#" class="event-btn" onclick="openModal('debugging-modal')">View Details</a>
+                </div>
+                <div class="event-card code-in-dark">
+                    <h3>Code in Dark</h3>
+                    <p>Test your coding skills with the screen turned off!</p>
+                    <a href="#" class="event-btn" onclick="openModal('code-in-dark-modal')">View Details</a>
+                </div>
+                <div class="event-card uiux">
+                    <h3>UI/UX Design</h3>
+                    <p>Create stunning UI/UX designs in a time-limited challenge.</p>
+                    <a href="#" class="event-btn" onclick="openModal('uiux-modal')">View Details</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Modal Structures -->
+        <div id="debugging-modal" class="modal">
+            <div class="modal-content">
+                <span class="close-btn" onclick="closeModal('debugging-modal')">&times;</span>
+                <h2>Debugging Event</h2>
+                <p>Showcase your debugging skills and solve real-world challenges under a time constraint.</p>
+                <p><strong>Date:</strong> March 15, 2025</p>
+                <p><strong>Time:</strong> 10:00 AM - 12:00 PM</p>
+                <p><strong>Location:</strong> Room A101</p>
+            </div>
+        </div>
+        <div id="code-in-dark-modal" class="modal">
+            <div class="modal-content">
+                <span class="close-btn" onclick="closeModal('code-in-dark-modal')">&times;</span>
+                <h2>Code in Dark</h2>
+                <p>Write code with the screen turned off and test your skills under extreme conditions!</p>
+                <p><strong>Date:</strong> March 16, 2025</p>
+                <p><strong>Time:</strong> 2:00 PM - 4:00 PM</p>
+                <p><strong>Location:</strong> Lab B202</p>
+            </div>
+        </div>
+        <div id="uiux-modal" class="modal">
+            <div class="modal-content">
+                <span class="close-btn" onclick="closeModal('uiux-modal')">&times;</span>
+                <h2>UI/UX Design Challenge</h2>
+                <p>Create a visually stunning UI/UX design within a limited time.</p>
+                <p><strong>Date:</strong> March 17, 2025</p>
+                <p><strong>Time:</strong> 1:00 PM - 3:00 PM</p>
+                <p><strong>Location:</strong> Design Hall C303</p>
+            </div>
+        </div>
     </section>
 
     <section id="registration">
         <h2>Registration</h2>
         
+        <div class="registration-container">
+            
+            <form id="registration-form" action="/register" method="POST">
+    
+                <!-- Student Name -->
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+                </div>
+    
+                <!-- Student Email -->
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                </div>
+    
+                <!-- Department -->
+                <div class="form-group">
+                    <label for="department">Department</label>
+                    <select id="department" name="department" required>
+                        <option value="" disabled selected>Select Department</option>
+                        <option value="IT">Information Technology (IT)</option>
+                        <option value="CS">Computer Science (CS)</option>
+                    </select>
+                </div>
+    
+                <!-- Year -->
+                <div class="form-group">
+                    <label for="year">Year</label>
+                    <select id="year" name="year" required>
+                        <option value="" disabled selected>Select Year</option>
+                        <option value="FY">First Year (FY)</option>
+                        <option value="SY">Second Year (SY)</option>
+                        <option value="TY">Third Year (TY)</option>
+                    </select>
+                </div>
+    
+                <!-- Event Selection -->
+                <div class="form-group">
+                    <label>Select Events</label>
+                    <div class="event-checkbox">
+                        <input type="checkbox" id="code-in-dark" name="event" value="Code in Dark">
+                        <label for="code-in-dark">Code in Dark</label>
+                    </div>
+                    <div class="event-checkbox">
+                        <input type="checkbox" id="debugging" name="event" value="Debugging">
+                        <label for="debugging">Debugging</label>
+                    </div>
+                    <div class="event-checkbox">
+                        <input type="checkbox" id="uiux" name="event" value="UI/UX Design">
+                        <label for="uiux">UI/UX Design</label>
+                    </div>
+                </div>
+    
+                <!-- Submit Button -->
+                <button type="submit" class="submit-btn">Register</button>
+            </form>
+        </div>
+    
     </section>
 
     <section id="leaderboard">
         <h2>Leaderboard</h2>
-        <p>Check out the leaderboard for top participants.</p>
+        <p>
+            Check out the leaderboard to see the top participants and their progress in the event challenges.
+        </p>
     </section>
 
     <section id="contact">
         <h2>Contact</h2>
-        <p>Have questions? Reach out to us via the contact section.</p>
+        <p>
+            Have questions? Reach out to us via the contact section. We're here to help!
+        </p>
     </section>
 
     <script>
-        function toggleMenu() {
-            document.querySelector('.menu').classList.toggle('active');
-        }
-
         const heading = document.getElementById("heading");
         const moon = document.getElementById("moon");
 
@@ -71,7 +186,9 @@
         document.querySelectorAll('.menu a').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
+                const targetId = this.getAttribute('href');
+                const targetSection = document.querySelector(targetId);
+                targetSection.scrollIntoView({ behavior: 'smooth' });
             });
         });
 
@@ -83,187 +200,534 @@
                 moon.style.right = 20 + value * 0.1 + '%';
             }
         });
+
+        // Modal Functions
+        function openModal(modalId) {
+            document.getElementById(modalId).style.display = "flex";
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = "none";
+        }
+        // Form Submission Handling
+        document.getElementById('registration-form').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            // Get Form Data
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const department = document.getElementById('department').value;
+            const year = document.getElementById('year').value;
+            const events = [];
+            document.querySelectorAll('input[name="event"]:checked').forEach(event => {
+                events.push(event.value);
+            });
+
+            // Validate Events Selection
+            if (events.length === 0) {
+                alert('Please select at least one event.');
+                return;
+            }
+
+            // Display Registration Details
+            const message = `
+                Registration Successful!
+                Name: ${name}
+                Email: ${email}
+                Department: ${department}
+                Year: ${year}
+                Events: ${events.join(', ')}
+            `;
+            alert(message);
+
+            // Reset Form
+            document.getElementById('registration-form').reset();
+        });
     </script>
-</body>
 
-<style>
-    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
 
-    * {
-        padding: 0;
-        margin: 0;
-        box-sizing: border-box;
-        font-family: "Poppins", sans-serif;
-    }
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            font-family: "Poppins", sans-serif;
+        }
 
-    body {
-        min-height: 100vh;
-        background: linear-gradient(to right, #010dff, #ae00ff);
-    }
+        body {
+            min-height: 100vh;
+            background: linear-gradient(to right, #0404f5, #03bbfe);
+        }
 
-    /* Glassmorphism Navbar */
-    header {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        padding: 15px 60px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        z-index: 100;
-        background: rgba(255, 255, 255, 0.1);
-        backdrop-filter: blur(10px);
-        border-radius: 15px;
-        transition: 0.3s;
-    }
-
-    #logo {
-        font-size: 2em;
-        color: #fff;
-        user-select: none;
-        font-weight: 600;
-    }
-
-    .menu {
-        display: flex;
-    }
-
-    .menu a {
-        font-size: 0.8em;
-        color: #fff;
-        font-weight: 500;
-        text-decoration: none;
-        margin-left: 20px;
-        letter-spacing: 1px;
-        padding: 6px 15px;
-        border-radius: 8px;
-        transition: 0.5s;
-    }
-
-    .menu a:hover,
-    a.active {
-        color: #333;
-        background: #fff;
-    }
-
-    /* Hamburger Menu */
-    .hamburger {
-        font-size: 2em;
-        color: #fff;
-        cursor: pointer;
-        display: none;
-    }
-
-    /* Responsive Design */
-    @media (max-width: 768px) {
-        .menu {
-            position: absolute;
-            top: 70px;
+        header {
+            position: fixed;
+            top: 0;
             left: 0;
             width: 100%;
+            padding: 15px 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
-            display: none;
-            flex-direction: column;
-            text-align: center;
-            padding: 15px 0;
-            border-radius: 0 0 15px 15px;
+            border-radius: 15px;
+            transition: 0.3s;
+        }
+
+        #logo {
+            font-size: 2em;
+            color: #fff;
+            user-select: none;
+            font-weight: 600;
         }
 
         .menu a {
-            margin: 10px 0;
-            padding: 10px;
-            font-size: 1.2em;
+            font-size: 0.8em;
+            color: #fff;
+            font-weight: 500;
+            text-decoration: none;
+            margin-left: 20px;
+            letter-spacing: 1px;
+            padding: 6px 15px;
+            border-radius: 8px;
+            transition: 0.5s;
         }
 
-        .menu.active {
+        .menu a:hover,
+        a.active {
+            
+        }
+
+        .parallax {
+            position: relative;
             display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: url('images/background.jpg') no-repeat;
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
         }
 
-        .hamburger {
+        #heading {
+            position: absolute;
+            top: 20%;
+            font-size: 4em;
+            color: #fff;
+            text-shadow: 2px 4px 5px #232121;
+        }
+
+        .parallax img {
+            position: absolute;
+            width: 100%;
+            pointer-events: none;
+        }
+
+        .parallax img#moon {
+            width: 300px;
+            top: 40%;
+            right: 20%;
+        }
+
+        .parallax img#mountain {
+            position: fixed;
+            bottom: 0;
+        }
+
+        .parallax img#grass {
+            bottom: -40%;
+        }
+
+        section {
+            position: relative;
+            background-color: #020912;
+            padding: 30px 100px;
+            
+        }
+
+        h2 {
+            color: #fff;
+            font-size: 3em;
+            margin-bottom: 25px;
+        }
+
+        p {
+            color: #fff;
+            font-size: 1em;
+            font-weight: 300;
+        }
+
+        .scroll-down {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #fff;
+            font-size: 1.2em;
+            font-weight: 500;
+            text-align: center;
+            opacity: 0.8;
+            animation: fadeIn 2s infinite alternate;
+        }
+
+        .scroll-down .arrow {
+            width: 20px;
+            height: 20px;
+            border-right: 3px solid white;
+            border-bottom: 3px solid white;
+            transform: rotate(45deg);
+            margin: 5px auto;
+            animation: bounce 1.5s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0) rotate(45deg); }
+            50% { transform: translateY(10px) rotate(45deg); }
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+
+        .created-by {
+            font-size: 1.5rem;
+            font-weight: 400;
+            color: #fff;
+            text-shadow: 1px 2px 4px rgba(0, 0, 0, 0.5);
+            margin-top: 10px;
+            text-align: left;
+            margin-left: -50px;
+            opacity: 0.9;
+            animation: fadeIn 3s infinite alternate;
+        }
+
+        .buttons {
+            margin-top: 20px;
+            display: flex;
+            gap: 20px;
+        }
+
+        .btn {
+            font-size: 1.2rem;
+            font-weight: 500;
+            padding: 12px 24px;
+            text-transform: uppercase;
+            border: none;
+            cursor: pointer;
+            text-decoration: none;
+            border-radius: 10px;
+            transition: 0.3s ease-in-out;
+        }
+
+        .explore-btn {
+            background: #007bff;
+            color: white;
+        }
+
+        .explore-btn:hover {
+            background: #0056b3;
+        }
+
+        .register-btn {
+            background: #d63384;
+            color: white;
+        }
+
+        .register-btn:hover {
+            background: #b3005a;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            text-align: center;
+            color: white;
+            text-transform: uppercase;
+            margin-bottom: 30px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            animation: fadeIn 1.5s ease-in-out;
+        }
+
+        .event-list {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .event-card {
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 20px;
+            width: 300px;
+            border-radius: 15px;
+            text-align: center;
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .event-card:hover {
+            transform: scale(1.05) rotate(1deg);
+            box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.3);
+        }
+
+        .event-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+
+        .event-card p {
+            font-size: 1rem;
+            margin-bottom: 15px;
+        }
+
+        .event-btn {
+            display: inline-block;
+            background: #ff0055;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: background 0.3s ease-in-out;
+        }
+
+        .event-btn:hover {
+            background: #cc0044;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .modal-content {
+            background: #020912;
+            padding: 20px;
+            border-radius: 15px;
+            width: 80%;
+            max-width: 500px;
+            text-align: center;
+            position: relative;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 1.5rem;
+            color: white;
+            cursor: pointer;
+        }
+
+        .close-btn:hover {
+            color: #ff0055;
+        }
+
+        .modal h2 {
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+
+        .modal p {
+            font-size: 1rem;
+            margin-bottom: 10px;
+        }
+
+        .modal strong {
+            color: #ff0055;
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 15px 20px;
+            }
+
+            #logo {
+                font-size: 1.5em;
+            }
+
+            .menu a {
+                font-size: 0.7em;
+                margin-left: 10px;
+                padding: 5px 10px;
+            }
+
+            #heading {
+                font-size: 2.5em;
+            }
+
+            .parallax img#moon {
+                width: 200px;
+                top: 30%;
+                right: 10%;
+            }
+
+            section {
+                padding: 20px;
+            }
+
+            h2 {
+                font-size: 2em;
+            }
+
+            .event-card {
+                width: 100%;
+                margin-bottom: 20px;
+            }
+
+            .modal-content {
+                width: 90%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            #heading {
+                font-size: 2em;
+            }
+
+            .buttons {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .btn {
+                font-size: 1rem;
+                padding: 10px 20px;
+            }
+
+            .event-card h3 {
+                font-size: 1.5rem;
+            }
+
+            .event-card p {
+                font-size: 0.9rem;
+            }
+
+            .event-btn {
+                padding: 8px 16px;
+            }
+        }
+
+        
+
+
+        .registration-container {
+            background: rgba(228, 123, 198, 0.623);
+            backdrop-filter: blur(10px);
+            padding: 30px;
+            border-radius: 15px;
+            width: 100%;
+            max-width: 5000px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 30vh;
+        }
+
+        h2 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
             display: block;
+            font-size: 1rem;
+            margin-bottom: 5px;
         }
-    }
 
-    .parallax {
-        position: relative;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-        background: url('images/background.jpg') no-repeat;
-        background-size: cover;
-        background-position: center;
-        background-attachment: fixed;
-    }
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.2);
+            color: #fff;
+            font-size: 1rem;
+        }
 
-    #heading {
-        position: absolute;
-        top: 20%;
-        font-size: 4em;
-        color: #fff;
-        text-shadow: 2px 4px 5px #232121;
-    }
+        .form-group input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
 
-    .parallax img {
-        position: absolute;
-        width: 100%;
-        pointer-events: none;
-    }
+        .form-group select {
+            appearance: none;
+            cursor: pointer;
+        }
 
-    .parallax img#moon {
-        width: 300px;
-        top: 40%;
-        right: 20%;
-    }
+        .form-group select option {
+            background: #020912;
+            color: #fff;
+        }
 
-    .parallax img#mountain {
-        position: fixed;
-        bottom: 0;
-    }
+        .form-group .event-checkbox {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
 
-    .parallax img#grass {
-        bottom: -20%;
-        width: 110%;
-    }
+        .form-group .event-checkbox input {
+            width: auto;
+        }
 
-    section {
-        position: relative;
-        background-color: #020912;
-        padding: 30px 100px;
-        min-height: 100vh;
-    }
+        .submit-btn {
+            width: 100%;
+            padding: 12px;
+            background: #ff0055;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
 
-    h2 {
-        color: #fff;
-        font-size: 3em;
-        margin-bottom: 25px;
-    }
+        .submit-btn:hover {
+            background: #cc0044;
+            
+        }
 
-    p {
-        color: #fff;
-        font-size: 1em;
-        font-weight: 300;
-    }
+        @media (max-width: 480px) {
+            .registration-container {
+                padding: 20px;
+            }
 
-    .aurora-text {
-        font-size: 5rem;
-        font-weight: bold;
-        text-transform: uppercase;
-        position: relative;
-        color: transparent;
-        background: linear-gradient(45deg, #ff00cc, #3333ff, #00ffcc, #ffcc00);
-        background-size: 100%;
-        -webkit-background-clip: text;
-        animation: auroraAnimation 4s infinite linear;
-    }
+            h2 {
+                font-size: 1.5rem;
+            }
 
-    @keyframes auroraAnimation {
-        0% { background-position: 0% 50%; }
-        50% { background-position: 100% 50%; }
-        100% { background-position: 0% 50%; }
-    }
-</style>
+            .form-group input,
+            .form-group select {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</body>
 
 </html>
